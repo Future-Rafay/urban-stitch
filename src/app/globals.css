@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 234 13% 96%; /* Light Stone */
+    --foreground: 0 0% 97%; /* Off-White */
+    --card: 234 13% 96%; /* Light Stone */
+    --card-foreground: 0 0% 10%; /* Charcoal Gray */
+    --popover: 234 13% 96%; /* Light Stone */
+    --popover-foreground: 0 0% 10%; /* Charcoal Gray */
+    --primary: 0 0% 17%; /* Charcoal Gray */
+    --primary-foreground: 27 100% 97%; /* Burnt Orange */
+    --secondary: 27 15% 87%; /* Light Stone */
+    --secondary-foreground: 0 0% 17%; /* Charcoal Gray */
+    --muted: 27 15% 87%; /* Light Stone */
+    --muted-foreground: 0 0% 45%; /* Dark Slate Gray */
+    --accent: 27 100% 70%; /* Burnt Orange */
+    --accent-foreground: 0 0% 97%; /* Off-White */
+    --destructive: 0 62.8% 30.6%; /* Red for warnings */
+    --destructive-foreground: 0 0% 97%; /* Off-White */
+    --border: 0 0% 90%; /* Subtle borders */
+    --input: 0 0% 90%; /* Input fields */
+    --ring: 27 100% 70%; /* Burnt Orange */
+    --radius: 0.5rem;
+
+    /* Chart Colors */
+    --chart-1: 27 100% 70%; /* Burnt Orange */
+    --chart-2: 0 0% 17%; /* Charcoal Gray */
+    --chart-3: 173 58% 39%; /* Complementary Green */
+    --chart-4: 240 10% 3.9%; /* Dark Slate Gray */
+    --chart-5: 340 75% 55%; /* Red-Pink Accent */
+  }
+
+  .dark {
+    --background: 0 0% 10%; /* Charcoal Gray */
+    --foreground: 27 100% 97%; /* Burnt Orange */
+    --card: 0 0% 10%; /* Charcoal Gray */
+    --card-foreground: 234 13% 96%; /* Light Stone */
+    --popover: 0 0% 10%; /* Charcoal Gray */
+    --popover-foreground: 234 13% 96%; /* Light Stone */
+    --primary: 234 13% 96%; /* Light Stone */
+    --primary-foreground: 0 0% 10%; /* Charcoal Gray */
+    --secondary: 240 3.7% 15.9%; /* Darker Gray */
+    --secondary-foreground: 234 13% 96%; /* Light Stone */
+    --muted: 240 3.7% 15.9%; /* Darker Gray */
+    --muted-foreground: 27 15% 87%; /* Lighter Gray */
+    --accent: 27 100% 70%; /* Burnt Orange */
+    --accent-foreground: 234 13% 96%; /* Light Stone */
+    --destructive: 0 62.8% 30.6%; /* Dark Red */
+    --destructive-foreground: 234 13% 96%; /* Light Stone */
+    --border: 234 10% 20%; /* Soft Gray Border */
+    --input: 234 10% 20%; /* Input Field Background */
+    --ring: 27 100% 70%; /* Burnt Orange Ring */
+    --chart-1: 27 100% 70%; /* Burnt Orange */
+    --chart-2: 0 0% 17%; /* Charcoal Gray */
+    --chart-3: 240 10% 3.9%; /* Slate Gray */
+    --chart-4: 173 58% 39%; /* Complementary Green */
+    --chart-5: 340 75% 55%; /* Red-Pink Accent */
+  }
+}
+
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
