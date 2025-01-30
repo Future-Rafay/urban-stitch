@@ -1,5 +1,4 @@
 import React from "react";
- // Adjust the import path as needed
 import Image from "next/image"; // For optimized images
 import { FullProductInterface } from "@/types/FullProduct";
 import { urlFor } from "@/sanity/lib/image";
