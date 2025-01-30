@@ -26,7 +26,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
         <div className="">
             <div
                 key={_id}
-                className="max-w-sm mx-auto group flex flex-col rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-transform transform hover:-translate-y-1"
+                className="w-[300px] mx-auto group flex flex-col rounded-xl shadow-md overflow-hidden hover:shadow-lg transition-transform transform lg:hover:-translate-y-1"
             >
                 {/* Product Image */}
                 <div className="relative w-full h-64 bg-gray-100">
@@ -34,7 +34,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                         <Image
                             src={image?.asset?._ref ? urlFor(image.asset._ref).url() : "/images/notFound.png"}
                             alt={name || "Product Image"}
-                        
+
                             layout="fill"
                             objectFit="contain"
                             className=" aspect-square transition-opacity group-hover:opacity-90"

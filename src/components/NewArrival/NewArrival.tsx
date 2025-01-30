@@ -27,7 +27,7 @@ const NewArrival = () => {
   }, []);
 
   return (
-    <div className="bg-background text-foreground max-w-[1240px] mx-auto h-auto my-[72px]">
+    <div className="bg-background text-foreground max-w-[1280px] mx-auto h-auto my-[72px]">
       <h2 className="text-2xl sm:text-4xl md:text-6xl font-extrabold text-primary text-center mb-20">
         New <span className="text-accent">Arrivals</span>
       </h2>
@@ -37,7 +37,7 @@ const NewArrival = () => {
           Oops! Something went wrong. Please try again later.
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+        <div className="flex overflow-auto gap-6">
           {products.length === 0 ? (
             // Show skeleton loaders if products are loading
             Array.from({ length: 4 }).map((_, index) => (

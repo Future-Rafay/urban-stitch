@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
@@ -7,12 +7,32 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Plus, Minus, ShoppingCart, Ruler } from "lucide-react";
 import { FullProductInterface } from "@/types/FullProduct";
 import { urlFor } from "@/sanity/lib/image";
+import RecentlyViewedProducts from "../RecentlyViewedProducts";
+import SimilarProducts from "../SimilarProducts";
 
 interface ProductDetailClientProps {
   product: FullProductInterface;
 }
 
 const ProductDetailClient: React.FC<ProductDetailClientProps> = ({ product }) => {
+
+  useEffect(() => {
+    if (!product) return;
+
+    // Retrieve existing recently viewed products from local storage
+    const storedProducts = JSON.parse(localStorage.getItem("recentlyViewed") || "[]");
+
+    // Remove duplicate entries & limit to last 5 items
+    const updatedProducts = [
+      product,
+      ...storedProducts.filter((p: FullProductInterface) => p._id !== product._id),
+    ].slice(0, 4);
+
+    // Save back to local storage
+    localStorage.setItem("recentlyViewed", JSON.stringify(updatedProducts));
+  }, [product]);
+
+
   const [selectedSize, setSelectedSize] = React.useState<string>("");
   const [quantity, setQuantity] = React.useState<number>(1);
 
@@ -32,10 +52,10 @@ const ProductDetailClient: React.FC<ProductDetailClientProps> = ({ product }) =>
     <motion.div
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
-      className="max-w-7xl mx-auto p-6 space-y-8"
+      className="mx-auto w-11/12 pt-6 md:p-6 space-y-8"
     >
       {/* Product Header */}
-      <div className="flex flex-col md:flex-row gap-8">
+      <div className="flex flex-col md:flex-row gap-8 max-w-7xl mx-auto">
         {/* Product Image */}
         <motion.div
           className="relative flex-shrink-0 group mx-auto lg:mx-0"
@@ -54,7 +74,7 @@ const ProductDetailClient: React.FC<ProductDetailClientProps> = ({ product }) =>
             alt={product.name}
             width={1200}
             height={1200}
-            className="rounded-lg shadow-md max-w-lg object-contain object-center"
+            className="rounded-lg shadow-md sm:max-w-lg object-contain object-center"
           />
         </motion.div>
 
@@ -79,7 +99,7 @@ const ProductDetailClient: React.FC<ProductDetailClientProps> = ({ product }) =>
               </div>
 
               {/* Colors */}
-              <div className="space-y-2">
+              {/* <div className="space-y-2">
                 <h3 className="text-sm font-medium text-muted-foreground">Colors:</h3>
                 <div className="flex gap-2">
                   {product.colors.map((color, index) => (
@@ -91,7 +111,7 @@ const ProductDetailClient: React.FC<ProductDetailClientProps> = ({ product }) =>
                     />
                   ))}
                 </div>
-              </div>
+              </div> */}
 
               {/* Sizes */}
               <div className="space-y-2">
@@ -146,15 +166,18 @@ const ProductDetailClient: React.FC<ProductDetailClientProps> = ({ product }) =>
                 </Button>
               </motion.div>
             </div>
+            {/* Metadata */}
+            <div className="text-xs text-muted-foreground space-y-1">
+              {/* <p>Created At: {new Date(product._createdAt).toLocaleDateString("en-US")}</p> */}
+              <p>Last Updated: {new Date(product._updatedAt).toLocaleDateString("en-US")}</p>
+            </div>
           </CardContent>
         </Card>
+
       </div>
 
-      {/* Metadata */}
-      <div className="text-xs text-muted-foreground space-y-1">
-        {/* <p>Created At: {new Date(product._createdAt).toLocaleDateString("en-US")}</p> */}
-        <p>Last Updated: {new Date(product._updatedAt).toLocaleDateString("en-US")}</p>
-      </div>
+      <SimilarProducts category={product.category} />
+      <RecentlyViewedProducts />
     </motion.div>
   );
 };
