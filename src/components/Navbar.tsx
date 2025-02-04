@@ -8,6 +8,8 @@ import { ProductCardInterFace } from "@/types/ProductCard";
 import { getAllProducts } from "@/services/products";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
+import Logo from "./Logo";
+
 
 const links = [
   { name: "Men", href: "/men" },
@@ -65,12 +67,10 @@ export default function Navbar() {
   }, [pathname]);
 
   return (
-    <nav className="bg-background px-6 sm:px-10 md:px-6 lg:px-16 xl:px-28 h-16 flex items-center justify-between shadow-lg">
+    <nav className="bg-background px-6 sm:px-10 md:px-6 lg:px-16 xl:px-28 h-20 flex items-center justify-between shadow-lg">
       {/* Logo */}
-      <Link href="/" className="text-lg md:text-2xl lg:text-3xl font-extrabold flex-shrink-0">
-        <span className="text-primary">Urban</span>
-        <span className="text-accent">Stitch</span>
-      </Link>
+
+      <Link href="/" className="mb-2"><Logo /></Link>
 
 
       <div className="hidden md:flex items-center space-x-3 bg-muted px-4 py-2 rounded-xl w-1/3 relative shadow-md transition-all">
@@ -179,7 +179,7 @@ export default function Navbar() {
                         alt={product.name}
                         width={45}
                         height={45}
-                         className="rounded-md object-contain w-[45px] h-[45px]"
+                        className="rounded-md object-contain w-[45px] h-[45px]"
                       />
                       <div className="flex flex-col">
                         <h4 className="text-sm font-medium text-primary">{product.name}</h4>
